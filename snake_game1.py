@@ -66,6 +66,18 @@ wn.onkeypress(go_down, "Down")
 wn.onkeypress(go_left, "Left")
 wn.onkeypress(go_right, "Right")
 
+#make the score count
+score = 0
+high_score = 0
+pen = turtle.Turtle()
+pen.speed(0)
+pen.shape('square')
+pen.color('white')
+pen.penup()
+pen.hideturtle()
+pen.goto(0, 260)
+
+
 #main game loop
 while True:
     wn.update()
@@ -106,10 +118,14 @@ while True:
 #move segment 0 to the hrad
     if len(segments) > 0 :
         segments[0].goto(head.xcor(), head.ycor())
-
-
+    score =  len(segments)*10
+    if score > high_score:
+        high_score = score
+    pen.clear()
+    pen.write(f'Score: {score} High Score: {high_score}', align="center", font=('Courier',24,'normal'))
+    
     move()
     time.sleep(delay)
-
+     
 
 wn.mainloop()
